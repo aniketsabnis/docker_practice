@@ -8,7 +8,14 @@ pipeline {
         }
         stage('Start Ubuntu Docker Container'){
             steps {
-                bat "docker run -d ubuntu_prac:${env.BUILD_ID}"
+                bat "docker run -d --name mycontainer ubuntu_prac:${env.BUILD_ID}"
+            }
+        }
+        stage('Execute commands in Ubuntu Docker Container'){
+            steps {
+                bat "docker exec --it mycontainer"
+                sh "ls /"
+                sh "exit"
             }
         }
     }
