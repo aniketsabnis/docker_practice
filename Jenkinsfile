@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Execute commands in Ubuntu Docker Container'){
             steps {
-                bat "docker exec --it mycontainer"
+                bat "docker exec -it mycontainer /bin/bash"
                 sh "ls /"
                 sh "exit"
             }
